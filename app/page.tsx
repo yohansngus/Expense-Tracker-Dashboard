@@ -26,7 +26,7 @@ export default function Home() {
     { category: "Rent", amount: 150 },
     { category: "Food", amount: 310 },
     { category: "Transport", amount: 10 },
-    { category: "Entertainment", amount: 30 },
+    { category: "Entertainment", amount: 32 },
     { category: "Education", amount: 80 },
     { category: "Healthcare", amount: 51 },
     { category: "Fashion", amount: 100 },
