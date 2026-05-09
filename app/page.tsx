@@ -12,6 +12,7 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from "recharts";
+import { useState } from "react";
 export default function Home() {
   const lineData = [
     { month: "Jan", amount: 150 },
@@ -39,6 +40,31 @@ export default function Home() {
     "#ef4444",
     "#8b5cf6",
   ];
+  type Expense = {
+    id: number;
+    expense: string;
+    amount: number;
+  };
+  const [expenses, setExpenses] = useState<Expense[]>([]);
+  const [expense, setExpense] = useState("");
+  const [amount, setAmount] = useState("");
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (!expense || !amount) return;
+
+    const newExpense: Expense = {
+      id: Date.now(),
+      expense,
+      amount: Number(amount),
+    };
+
+    setExpenses([...expenses, newExpense]);
+
+    setExpense("");
+    setAmount("");
+  };
+
   return (
     <div className="font-sans bg-white pb-10">
       {/*Nav bar*/}
@@ -60,9 +86,41 @@ export default function Home() {
       </div>
       {/*Main content*/}
       <main className="flex flex-col w-full flex-col p-6">
-        <h1 className="text-3xl font-bold shadow-sm p-8 my-15 text-black rounded-xl">
-          Expense Tracker Dashboard
-        </h1>
+        <div className="max-w-md mx-auto p-4">
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <input
+              type="text"
+              placeholder="Expense name"
+              value={expense}
+              onChange={(e) => setExpense(e.target.value)}
+              className="w-full border p-2 rounded"
+            />
+
+            <input
+              type="number"
+              placeholder="Amount"
+              value={amount}
+              onChange={(e) => setAmount(e.target.value)}
+              className="w-full border p-2 rounded"
+            />
+
+            <button
+              type="submit"
+              className="bg-black text-white px-4 py-2 rounded"
+            >
+              Add Expense
+            </button>
+          </form>
+
+          <div className="mt-6">
+            {expenses.map((item) => (
+              <div key={item.id} className="flex justify-between border-b py-2">
+                <span>{item.expense}</span>
+                <span>${item.amount}</span>
+              </div>
+            ))}
+          </div>
+        </div>
         {/*cards section*/}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
           <div className="bg-white p-6 rounded-2xl shadow-sm">
