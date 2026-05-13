@@ -78,6 +78,11 @@ export default function Home() {
     { expense: "", amount: 0 },
   );
 
+  const totalSpending = expenses.reduce(
+    (initial, currentExpense) => initial + currentExpense.amount,
+    0,
+  );
+
   return (
     <div className="font-sans bg-white pb-10">
       {/*Nav bar*/}
@@ -150,7 +155,9 @@ export default function Home() {
           <div className="bg-white p-6 rounded-2xl shadow-sm">
             <p className="text-gray-500 text-sm">Total Spending</p>
 
-            <h2 className="text-3xl text-gray-400 font-bold mt-2">$715</h2>
+            <h2 className="text-3xl text-gray-400 font-bold mt-2">
+              ${totalSpending}
+            </h2>
           </div>
 
           <div className="bg-white p-6 rounded-2xl shadow-sm">
