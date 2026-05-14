@@ -177,7 +177,7 @@ export default function Home() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 w-full">
           {" "}
           <div className="w-full h-[400px] bg-white p-6 rounded-2xl shadow-sm">
-            <h2 className="text-lg text-gray-300 font-semibold mb-4 pl-2">
+            <h2 className="text-lg text-gray-300 font-semibold mb-4 pl-3">
               Monthly Spending Trend
             </h2>
             {expenses.length > 0 ? (
@@ -256,7 +256,7 @@ export default function Home() {
               </ResponsiveContainer>
             ) : (
               <div className="flex items-center justify-center h-full text-gray-400">
-                No expenses yet
+                No expenses yet.
               </div>
             )}
           </div>
